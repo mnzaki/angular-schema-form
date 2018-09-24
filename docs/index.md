@@ -1,4 +1,3 @@
-
 IMPORTANT
 =========
 
@@ -8,6 +7,10 @@ all the HTML has been moved to [github.com/json-schema-form/angular-schema-form-
 The documentation below, especially form options is therefore somewhat bootstrap decorator
 specific. The docs is undergoing updating.
 
+Migration Guide
+===============
+If you use the library factories in an app or an add-on or plan to upgrade versions, please read the 
+[migration guide](migration.md) for any items that may need consideration.
 
 Documentation
 =============
@@ -509,6 +512,8 @@ if you for some reason can't do this, but *do* have the power to change the sche
 default values within the schema using the custom attribute `x-schema-form`. `x-schema-form` should
 be a form object and acts as form definition defaults for that field.
 
+Note: If adding a titleMap it MUST be in the object list format as demonstrated in the example below.
+
 Example schema.
 ```js
 {
@@ -520,6 +525,11 @@ Example schema.
       "x-schema-form": {
         "type": "textarea",
         "placeholder": "Don't hold back"
+        "titleMap": {
+          { "name": "Example A", "value": "a" },
+          { "name": "Example B", "value": "b" },
+          { "name": "Example C", "value": "c" }
+        }
       }
     }
   }
@@ -648,6 +658,13 @@ var schema = {
 ]
 ```
 
+$ref
+----------------
+`$ref` support is provided by the `json-refs` module and is currently using the filter `[ 'relative', 'local', 'remote' ]`
+
+**Note**: An object containing `$ref` should be assumed to be entirely replaced by the referenced object as per the 
+json-schema specification.
+
 Standard Options
 ----------------
 
@@ -716,7 +733,7 @@ is ```{ 'glyphicon': true, 'glyphicon-ok': hasSuccess(), 'glyphicon-remove': has
 
 ex. displaying an asterisk on required fields
 ```javascript
-  $sope.form = [
+  $scope.form = [
     {
       key: "name",
       feedback: "{ 'glyphicon': true, 'glyphicon-asterisk': form.required && !hasSuccess() && !hasError() ,'glyphicon-ok': hasSuccess(), 'glyphicon-remove': hasError() }"
@@ -771,7 +788,7 @@ the surface it uses `ng-if` so the hidden field is *not* part of the form.
 `condition` should be a string with an angular expression. If that expression evaluates as thruthy
 the field will be rendered into the DOM otherwise not. The expression is evaluated in the parent scope of
 the `sf-schema` directive (the same as onClick on buttons) but with access to the current model,
-current model value and current array index under the name `model`, `modelValue` and `arrayIndex`.
+current model value and current array index under the name `model`, `modelValue` and `arrayIndex`/`arrayIndices`.
 This is useful for hiding/showing parts of a form depending on another form control.
 
 ex. A checkbox that shows an input field for a code when checked
@@ -852,7 +869,7 @@ function FormCtrl($scope) {
         "persons[].eligible",
         {
           key: "persons[].code",
-          condition: "persons[arrayIndex].eligible", //or "model[arrayIndex].eligable"
+          condition: "persons[arrayIndex].eligible", //or "model[arrayIndex].eligible"
         }
       ]
     }
@@ -860,7 +877,7 @@ function FormCtrl($scope) {
 }
 ```
 
-Note that arrays inside arrays won't work with conditions.
+Arrays-in-arrays must use `arrayIndices`. e.g. `model[arrayIndices[0]].child[arrayIndices[1]].etc`.
 
 
 ### destroyStrategy

@@ -1,6 +1,5 @@
 Angular Schema Form
 ===================
-[![bower version](https://img.shields.io/bower/v/angular-schema-form.svg?style=flat-square)](#bower)
 [![npm version](https://img.shields.io/npm/v/angular-schema-form.svg?style=flat-square)](https://www.npmjs.org/package/angular-schema-form)
 [![npm downloads](https://img.shields.io/npm/dm/angular-schema-form.svg?style=flat-square)](http://npm-stat.com/charts.html?package=angular-schema-form&from=2015-01-01)
 [![Gitter](https://img.shields.io/badge/GITTER-JOIN%20CHAT%20%E2%86%92-ff69b4.svg?style=flat-square)](https://gitter.im/json-schema-form/angular-schema-form?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -9,9 +8,13 @@ Angular Schema Form
 
 Generate forms from JSON schemas using AngularJS!
 
+Why not many changes lately?
+============================
+Much of the new development is being done in [Assimilate](https://github.com/jsonschema/assimilate), a standardised validator for JSON Schema to help ensure changing validators is never as painful as escaping tv4 is, as well as a new [core library](https://github.com/json-schema-form/json-schema-form-core) to allow for a more predictable upgrade from AngularJS to Angular.
+
 The Blog / The Web Site / The Twitter / The Movie
 =================================================
-[medium.com/@SchemaFormIO](https://medium.com/@SchemaFormIO) / [schemaform.io](http://schemaform.io) / [@SchemaFormIO](http://twitter.com/SchemaFormIO) / [Movie](https://www.youtube.com/watch?v=duBFMipRq2o)
+[medium.com/@SchemaFormIO](https://medium.com/@SchemaFormIO) / [website](https://json-schema-form.github.io/angular-schema-form) / [@SchemaFormIO](http://twitter.com/SchemaFormIO) / [Movie](https://www.youtube.com/watch?v=duBFMipRq2o)
 
 If you use ASF in your project/company please let us know! We'd love to feature you on the site.
 
@@ -22,6 +25,15 @@ Demo Time!
 [Try out the example page](http://schemaform.io/examples/bootstrap-example.html). Try editing the schema or form definition and see what comes out!
 
 Hint: By pressing the 'Save to gist' button (top left), you can save your example into a shareable link.
+
+Documentation
+=============
+You can find [all documentation here](docs/index.md), it covers all the different field types
+and their options.
+
+It also covers how to [extend angular schema form with your own field types](docs/extending.md).
+
+Before filing an issue, please read our [issue support instructions](docs/support.md) or you may be ignored.
 
 What is it?
 ===========
@@ -45,12 +57,10 @@ apart from JSON Form?
    with version 4 of the JSON schema standard.
 3. By default, Schema Form generates Bootstrap 3-friendly HTML.
 
-Documentation
--------------
-You can find [all documentation here](docs/index.md), it covers all the different field types
-and their options.
-
-It also covers how to [extend angular schema form with your own field types](docs/extending.md).
+Migration Guide
+===============
+If you already use the library factories in an app or an add-on or plan to upgrade versions, please read the 
+[migration guide](docs/migration.md) for any items that may need consideration.
 
 Basic Usage
 -----------
@@ -196,7 +206,7 @@ To see how to make an **add-on** work I have now included the **calculate** add-
 
 ## Tests
 Unit tests are run with [karma](http://karma-runner.github.io) and written using
-[mocha](http://visionmedia.github.io/mocha/), [chai](http://chaijs.com/) and
+[mocha](http://mochajs.org/), [chai](http://chaijs.com/) and
 [sinon](http://sinonjs.org/)
 
 To run the tests:
